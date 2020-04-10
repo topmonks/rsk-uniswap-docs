@@ -20,7 +20,7 @@ exchangeContract.methods.setup(token: String).send()
 
 | Parameter | Description |
 | :--- | ---: |
-| token\_addr | Ethereum address of an ERC20 Token |
+| token\_addr | RSK address of an ERC20 Token |
 
 ## addLiquidity
 
@@ -45,7 +45,7 @@ exchangeContract.methods.addLiquidity(min_liquidity, max_tokens, deadline).send(
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| msg.value | uint256 | Amount of ETH added |
+| msg.value | uint256 | Amount of RBTC added |
 | min\_liquidity | uint256 | Minimum minted liquidity |
 | max\_tokens | uint256 | Maximum ERC20 tokens added |
 | deadline | uint256 | Transaction deadline |
@@ -78,13 +78,13 @@ exchangeContract.methods.removeLiquidity(amount, min_eth, min_tokens, deadline).
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
 | amount | uint256 | Amount of liquidity burned |
-| min\_eth | uint256 | Minimum ETH removed |
+| min\_eth | uint256 | Minimum RBTC removed |
 | min\_tokens | uint256 | Minimum ERC20 tokens removed |
 | deadline | uint256 | Transaction deadline |
 
 | Returns |  |
 | :--- | ---: |
-| uint256 | Amount of ETH removed |
+| uint256 | Amount of RBTC removed |
 | uint256 | Amount of ERC20 tokens removed. |
 
 ## default
@@ -107,7 +107,7 @@ web3.eth.sendTransaction({value: ethAmount})
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| msg.value | uint256 | Amount of ETH sold |
+| msg.value | uint256 | Amount of RBTC sold |
 
 ## ethToTokenSwapInput
 
@@ -131,7 +131,7 @@ exchangeContract.methods.ethToTokenSwapInput(min_liquidity, max_tokens, deadline
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| msg.value | uint256 | Amount of ETH sold |
+| msg.value | uint256 | Amount of RBTC sold |
 | min\_tokens | uint256 | Minimum ERC20 tokens bought |
 | deadline | uint256 | Transaction deadline |
 
@@ -162,7 +162,7 @@ exchangeContract.methods.ethToTokenTransferInput(min_liquidity, max_tokens, dead
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| msg.value | uint256 | Amount of ETH sold |
+| msg.value | uint256 | Amount of RBTC sold |
 | min\_tokens | uint256 | Minimum ERC20 tokens bought |
 | deadline | uint256 | Transaction deadline |
 | recipient | address | Address that receives ERC20 tokens |
@@ -193,13 +193,13 @@ exchangeContract.methods.ethToTokenSwapOutput(tokens_bought, deadline).send({val
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| msg.value | uint256 | Maximum ETH sold |
+| msg.value | uint256 | Maximum RBTC sold |
 | tokens\_bought | uint256 | Amount of ERC20 tokens bought |
 | deadline | uint256 | Transaction deadline |
 
 | Returns |  |
 | :--- | ---: |
-| uint256 | Amount of ETH sold |
+| uint256 | Amount of RBTC sold |
 
 ## ethToTokenTransferOutput
 
@@ -224,14 +224,14 @@ exchangeContract.methods.ethToTokenTransferOutput(tokens_bought, deadline, recip
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| msg.value | uint256 | Maximum ETH sold |
+| msg.value | uint256 | Maximum RBTC sold |
 | tokens\_bought | uint256 | Amount of ERC20 tokens bought |
 | deadline | uint256 | Transaction deadline |
 | recipient | address | Address that receives ERC20 tokens |
 
 | Returns |  |
 | :--- | ---: |
-| uint256 | Amount of ETH sold |
+| uint256 | Amount of RBTC sold |
 
 ## tokenToEthSwapInput
 
@@ -256,12 +256,12 @@ exchangeContract.methods.tokenToEthSwapInput(tokens_sold, min_eth, deadline).sen
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
 | tokens\_sold | uint256 | Amount of ERC20 tokens sold |
-| min\_eth | uint256 | Minimum ETH bought |
+| min\_eth | uint256 | Minimum RBTC bought |
 | deadline | uint256 | Transaction deadline |
 
 | Returns |  |
 | :--- | ---: |
-| uint256 | Amount of ETH bought |
+| uint256 | Amount of RBTC bought |
 
 ## tokenToEthTransferInput
 
@@ -287,13 +287,13 @@ exchangeContract.methods.tokenToEthTransferInput(tokens_sold, min_eth, deadline,
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
 | tokens\_sold | uint256 | Amount of ERC20 tokens sold |
-| min\_eth | uint256 | Minimum ETH bought |
+| min\_eth | uint256 | Minimum RBTC bought |
 | deadline | uint256 | Transaction deadline |
-| recipient | address | Address that receives ETH |
+| recipient | address | Address that receives RBTC |
 
 | Returns |  |
 | :--- | ---: |
-| uint256 | Amount of ETH bought |
+| uint256 | Amount of RBTC bought |
 
 ## tokenToEthSwapOutput
 
@@ -317,7 +317,7 @@ exchangeContract.methods.tokenToEthSwapOutput(eth_bought, max_tokens, deadline: 
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| eth\_bought | uint256 | Amount of ETH bought |
+| eth\_bought | uint256 | Amount of RBTC bought |
 | max\_tokens | uint256 | Maximum ERC20 tokens sold |
 | deadline | uint256 | Transaction deadline |
 
@@ -348,10 +348,10 @@ exchangeContract.methods.tokenToEthTransferOutput(eth_bought, max_tokens, deadli
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| eth\_bought | uint256 | Amount of ETH bought |
+| eth\_bought | uint256 | Amount of RBTC bought |
 | max\_tokens | uint256 | Maximum ERC20 tokens sold |
 | deadline | uint256 | Transaction deadline |
-| recipient | address | Address that receives ETH |
+| recipient | address | Address that receives RBTC |
 
 | Returns |  |
 | :--- | ---: |
@@ -385,7 +385,7 @@ exchangeContract.methods.tokenToTokenSwapInput(
 | :--- | :--- | ---: |
 | tokens\_sold | uint256 | Amount of input ERC20 tokens sold |
 | min\_tokens\_bought | uint256 | Minimum output ERC20 tokens bought |
-| min\_eth\_bought | uint256 | Minimum ETH bought as intermediary |
+| min\_eth\_bought | uint256 | Minimum RBTC bought as intermediary |
 | deadline | uint256 | Transaction deadline |
 | token\_addr | address | Address of output ERC20 token |
 
@@ -422,7 +422,7 @@ exchangeContract.methods.tokenToTokenTransferInput(
 | :--- | :--- | ---: |
 | tokens\_sold | uint256 | Amount of input ERC20 tokens sold |
 | min\_tokens\_bought | uint256 | Minimum output ERC20 tokens bought |
-| min\_eth\_bought | uint256 | Minimum ETH bought as intermediary |
+| min\_eth\_bought | uint256 | Minimum RBTC bought as intermediary |
 | deadline | uint256 | Transaction deadline |
 | recipient | address | Address that receives output ERC20 tokens |
 | token\_addr | address | Address of output ERC20 token |
@@ -459,7 +459,7 @@ exchangeContract.methods.tokenToTokenSwapOutput(
 | :--- | :--- | ---: |
 | tokens\_bought | uint256 | Amount of output ERC20 tokens bought |
 | max\_tokens\_sold | uint256 | Maximum input ERC20 tokens bought |
-| max\_eth\_sold | uint256 | Maximum ETH bought as intermediary |
+| max\_eth\_sold | uint256 | Maximum RBTC bought as intermediary |
 | deadline | uint256 | Transaction deadline |
 | token\_addr | address | Address of output ERC20 token |
 
@@ -496,7 +496,7 @@ exchangeContract.methods.tokenToTokenTransferOutput(
 | :--- | :--- | ---: |
 | tokens\_bought | uint256 | Amount of output ERC20 tokens bought |
 | max\_tokens\_sold | uint256 | Maximum input ERC20 tokens bought |
-| max\_eth\_sold | uint256 | Maximum ETH bought as intermediary |
+| max\_eth\_sold | uint256 | Maximum RBTC bought as intermediary |
 | deadline | uint256 | Transaction deadline |
 | recipient | address | Address that receives output ERC20 tokens |
 | token\_addr | address | Address of output ERC20 token |
@@ -533,7 +533,7 @@ exchangeContract.methods.tokenToTokenSwapInput(
 | :--- | :--- | ---: |
 | tokens\_sold | uint256 | Amount of input ERC20 tokens sold |
 | min\_tokens\_bought | uint256 | Minimum output ERC20 tokens bought |
-| min\_eth\_bought | uint256 | Minimum ETH bought as intermediary |
+| min\_eth\_bought | uint256 | Minimum RBTC bought as intermediary |
 | deadline | uint256 | Transaction deadline |
 | exchange\_addr | address | Address of output ERC20 token exchange |
 
@@ -570,7 +570,7 @@ exchangeContract.methods.tokenToExchangeTransferInput(
 | :--- | :--- | ---: |
 | tokens\_sold | uint256 | Amount of input ERC20 tokens sold |
 | min\_tokens\_bought | uint256 | Minimum output ERC20 tokens bought |
-| min\_eth\_bought | uint256 | Minimum ETH bought as intermediary |
+| min\_eth\_bought | uint256 | Minimum RBTC bought as intermediary |
 | deadline | uint256 | Transaction deadline |
 | recipient | address | Address that receives output ERC20 tokens |
 | exchange\_addr | address | Address of output ERC20 token exchange |
@@ -607,7 +607,7 @@ exchangeContract.methods.tokenToExchangeSwapOutput(
 | :--- | :--- | ---: |
 | tokens\_bought | uint256 | Amount of output ERC20 tokens bought |
 | max\_tokens\_sold | uint256 | Maximum input ERC20 tokens bought |
-| max\_eth\_sold | uint256 | Maximum ETH bought as intermediary |
+| max\_eth\_sold | uint256 | Maximum RBTC bought as intermediary |
 | deadline | uint256 | Transaction deadline |
 | exchange\_addr | address | Address of output ERC20 token exchange |
 
@@ -644,7 +644,7 @@ exchangeContract.methods.tokenToExchangeTransferOutput(
 | :--- | :--- | ---: |
 | tokens\_bought | uint256 | Amount of output ERC20 tokens bought |
 | max\_tokens\_sold | uint256 | Maximum input ERC20 tokens bought |
-| max\_eth\_sold | uint256 | Maximum ETH bought as intermediary |
+| max\_eth\_sold | uint256 | Maximum RBTC bought as intermediary |
 | deadline | uint256 | Transaction deadline |
 | recipient | address | Address that receives output ERC20 tokens |
 | exchange\_addr | address | Address of output ERC20 token exchange |
@@ -672,7 +672,7 @@ exchangeContract.methods.getEthToTokenInputPrice(eth_sold).call()
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| eth\_sold | uint256 | Amount of ETH sold |
+| eth\_sold | uint256 | Amount of RBTC sold |
 
 | Returns |  |
 | :--- | ---: |
@@ -701,7 +701,7 @@ exchangeContract.methods.getEthToTokenOutputPrice(tokens_bought).call()
 
 | Returns |  |
 | :--- | ---: |
-| uint256 | Amount of ETH that must be sold |
+| uint256 | Amount of RBTC that must be sold |
 
 ## getTokenToEthInputPrice
 
@@ -726,7 +726,7 @@ exchangeContract.methods.getTokenToEthInputPrice(tokens_sold).call()
 
 | Returns |  |
 | :--- | ---: |
-| uint256 | Amount of ETH that can be bought |
+| uint256 | Amount of RBTC that can be bought |
 
 ## getTokenToEthOutputPrice
 
@@ -747,7 +747,7 @@ exchangeContract.methods.getTokenToEthOutputPrice(eth_bought).call()
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| eth\_bought | uint256 | Amount of ETH bought |
+| eth\_bought | uint256 | Amount of RBTC bought |
 
 | Returns |  |
 | :--- | ---: |
@@ -880,7 +880,7 @@ exchangeContract.methods.balanceOf(_owner).call()
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| \_owner | address | Ethereum address |
+| \_owner | address | RSK address |
 
 | Returns |  |
 | :--- | ---: |

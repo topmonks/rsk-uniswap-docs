@@ -1,14 +1,14 @@
 # Trade tokens
 
-In Uniswap, there is a separate exchange contract for each ERC20 token. These exchanges hold reserves of both ETH and their associated ERC20. Instead of waiting to be matched in an order-book, users can make trades against the reserves at any time. Reserves are pooled between a decentralized network of liquidity providers who collect fees on every trade.
+In RSKswap, there is a separate exchange contract for each ERC20 token. These exchanges hold reserves of both RBTC and their associated ERC20. Instead of waiting to be matched in an order-book, users can make trades against the reserves at any time. Reserves are pooled between a decentralized network of liquidity providers who collect fees on every trade.
 
-Pricing is automatic, based on the $$x * y = k$$ market making formula which automatically adjusts prices based off the relative sizes of the two reserves and the size of the incoming trade. Since all tokens share ETH as a common pair, it is used as an intermediary asset for direct trading between any ERC20 ⇄ ERC20 pair.
+Pricing is automatic, based on the $$x * y = k$$ market making formula which automatically adjusts prices based off the relative sizes of the two reserves and the size of the incoming trade. Since all tokens share RBTC as a common pair, it is used as an intermediary asset for direct trading between any ERC20 ⇄ ERC20 pair.
 
-## ETH ⇄ ERC20 Calculations
+## RBTC ⇄ ERC20 Calculations
 
-The variables needed to determine price when trading between ETH and ERC20 tokens is:
+The variables needed to determine price when trading between RBTC and ERC20 tokens is:
 
-* ETH reserve size of the ERC20 exchange
+* RBTC reserve size of the ERC20 exchange
 * ERC20 reserve size of the ERC20 exchange
 * Amount sold \(input\) or amount bought \(output\)
 
@@ -17,12 +17,12 @@ The variables needed to determine price when trading between ETH and ERC20 token
 For sell orders \(exact input\), the amount bought \(output\) is calculated:
 
 ```javascript
-// Sell ETH for ERC20
+// Sell RBTC for ERC20
 const inputAmount = userInputEthValue
 const inputReserve = web3.eth.getBalance(exchangeAddress)
 const outputReserve = tokenContract.methods.balanceOf(exchangeAddress).call()
 
-// Sell ERC20 for ETH
+// Sell ERC20 for RBTC
 const inputAmount = userInputTokenValue
 const inputReserve = tokenContract.methods.balanceOf(exchangeAddress).call()
 const outputReserve = web3.eth.getBalance(exchangeAddress)
@@ -38,12 +38,12 @@ const outputAmount = numerator / denominator
 For buy orders \(exact output\), the cost \(input\) is calculated:
 
 ```javascript
-// Buy ERC20 with ETH
+// Buy ERC20 with RBTC
 const outputAmount = userInputTokenValue
 const inputReserve = web3.eth.getBalance(exchangeAddress)
 const outputReserve = tokenContract.methods.balanceOf(exchangeAddress).call()
 
-// Buy ETH with ERC20
+// Buy RBTC with ERC20
 const outputAmount = userInputEthValue
 const inputReserve = tokenContract.methods.balanceOf(exchangeAddress).call()
 const outputReserve = web3.eth.getBalance(exchangeAddress)
@@ -74,9 +74,9 @@ const rate = outputAmount / inputAmount
 
 The variables needed to determine price when trading between two ERC20 tokens is:
 
-* ETH reserve size of the input ERC20 exchange
+* RBTC reserve size of the input ERC20 exchange
 * ERC20 reserve size of the input ERC20 exchange
-* ETH reserve size of the output ERC20 exchange
+* RBTC reserve size of the output ERC20 exchange
 * ERC20 reserve size of the output ERC20 exchange
 * Amount sold \(input\) or amount bought \(output\)
 
@@ -85,7 +85,7 @@ The variables needed to determine price when trading between two ERC20 tokens is
 For sell orders \(exact input\), the amount bought \(output\) is calculated:
 
 ```javascript
-// TokenA (ERC20) to ETH conversion
+// TokenA (ERC20) to RBTC conversion
 const inputAmountA = userInputTokenAValue
 const inputReserveA = tokenContractA.methods.balanceOf(exchangeAddressA).call()
 const outputReserveA = web3.eth.getBalance(exchangeAddressA)
@@ -94,7 +94,7 @@ const numeratorA = inputAmountA * outputReserveA * 997
 const denominatorA = inputReserveA * 1000 + inputAmountA * 997
 const outputAmountA = numeratorA / denominatorA
 
-// ETH to TokenB conversion
+// RBTC to TokenB conversion
 const inputAmountB = outputAmountA
 const inputReserveB = web3.eth.getBalance(exchangeAddressB)
 const outputReserveB = tokenContract.methods.balanceOf(exchangeAddressB).call()
@@ -109,7 +109,7 @@ const outputAmountB = numeratorB / denominatorB
 For buy orders \(exact output\), the cost \(input\) is calculated:
 
 ```javascript
-// Buy TokenB with ETH
+// Buy TokenB with RBTC
 const outputAmountB = userInputEthValue
 const inputReserveB = web3.eth.getBalance(exchangeAddressB)
 const outputReserveB = tokenContractB.methods.balanceOf(exchangeAddressB).call()
@@ -119,7 +119,7 @@ const numeratorB = outputAmountB * inputReserveB * 1000
 const denominatorB = (outputReserveB - outputAmountB) * 997
 const inputAmountB = numeratorB / denominatorB + 1
 
-// Buy ETH with TokenA
+// Buy RBTC with TokenA
 const outputAmountA = userInputEthValue
 const inputReserveA = tokenContractA.methods.balanceOf(exchangeAddressA).call()
 const outputReserveA = web3.eth.getBalance(exchangeAddressA)
@@ -132,7 +132,7 @@ const inputAmountA = numeratorA / denominatorA + 1
 
 ### Liquidity Provider Fee
 
-There is a 0.3% liquidity provider fee to swap from TokenA to ETH on the input exchange. There is another 0.3% liquidity provider fee to swap the remaining ETH to TokenB.
+There is a 0.3% liquidity provider fee to swap from TokenA to RBTC on the input exchange. There is another 0.3% liquidity provider fee to swap the remaining RBTC to TokenB.
 
 ```javascript
 const exchangeAFee = inputAmountA * 0.003
@@ -155,9 +155,9 @@ const rate = outputAmountB / inputAmountA
 
 ## Deadlines
 
-Many Uniswap functions include a transaction `deadline` that sets a time after which a transaction can no longer be executed. This limits miners holding signed transactions for extended durations and executing them based off market movements. It also reduces uncertainty around transactions that take a long time to execute due to issues with gas price.
+Many RSKswap functions include a transaction `deadline` that sets a time after which a transaction can no longer be executed. This limits miners holding signed transactions for extended durations and executing them based off market movements. It also reduces uncertainty around transactions that take a long time to execute due to issues with gas price.
 
-Deadlines are calculated by adding the desired amount of time \(in seconds\) to the latest Ethereum block timestamp.
+Deadlines are calculated by adding the desired amount of time \(in seconds\) to the latest RSK block timestamp.
 
 ```javascript
 web3.eth.getBlock('latest', (error, block) => {
@@ -167,9 +167,9 @@ web3.eth.getBlock('latest', (error, block) => {
 
 ## Recipients
 
-Uniswap allows traders to swap tokens and transfer the output to a new `recipient` address. This allows for a type of payment where the payer sends one token and the payee receives another.
+RSKswap allows traders to swap tokens and transfer the output to a new `recipient` address. This allows for a type of payment where the payer sends one token and the payee receives another.
 
-## ETH ⇄ ERC20 Trades
+## RBTC ⇄ ERC20 Trades
 
 Coming soon...
 

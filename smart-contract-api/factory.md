@@ -18,7 +18,7 @@ factoryContract.methods.initializeFactory(template).send()
 
 | Parameter | Description |
 | :--- | ---: |
-| template | Ethereum address of exchange template |
+| template | RSK address of exchange template |
 
 ## createExchange
 
@@ -38,11 +38,11 @@ factoryContract.methods.initializeFactory(token).send()
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| token | address | Ethereum address of an ERC20 token |
+| token | address | RSK address of an ERC20 token |
 
 | Returns |  |
 | :--- | ---: |
-| address | Ethereum address of a Uniswap exchange |
+| address | RSK address of a RSKswap exchange |
 
 ## getExchange
 
@@ -63,11 +63,11 @@ factoryContract.methods.getExchange(token).call()
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| token | address | Ethereum address of an ERC20 token |
+| token | address | RSK address of an ERC20 token |
 
 | Returns |  |
 | :--- | ---: |
-| address | Ethereum address of a Uniswap exchange |
+| address | RSK address of a RSKswap exchange |
 
 ## getToken
 
@@ -88,11 +88,11 @@ factoryContract.methods.getToken(exchange).call()
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| exchange | address | Ethereum address of a Uniswap exchange |
+| exchange | address | RSK address of a RSKswap exchange |
 
 | Returns |  |
 | :--- | ---: |
-| address | Ethereum address of an ERC20 token |
+| address | RSK address of an ERC20 token |
 
 ## getTokenWithId
 
@@ -113,9 +113,9 @@ factoryContract.methods.getTokenWithId(token_id).call()
 
 | Parameter | Type | Description |
 | :--- | :--- | ---: |
-| token\_id | uint256 | Uniswap ID for an ERC20 token |
+| token\_id | uint256 | RSKswap ID for an ERC20 token |
 
 | Returns |  |
 | :--- | ---: |
-| address | Ethereum address of an ERC20 token |
+| address | RSK address of an ERC20 token |
 

@@ -1,25 +1,25 @@
-# Connect to Uniswap
+# Connect to RSKswap
 
 ## Web3
 
-The Uniswap smart contracts exist on the Ethereum blockchain. Use [ethers.js](https://github.com/ethers-io/ethers.js/) or [web3.js](https://github.com/ethereum/web3.js) to connect your website to Ethereum. Users will need a web3-enabled browser. On desktop this means using the [MetaMask](https://metamask.io/) extension or something similar. On mobile, web3-compatible browsers include [Trust Wallet](https://trustwalletapp.com/) and [Coinbase Wallet](https://wallet.coinbase.com/). See [ethereum.org](https://ethereum.org/use/#_3-what-is-a-wallet-and-which-one-should-i-use) to learn more.
+The RSKswap smart contracts exist on the RSK blockchain. Use [ethers.js](https://github.com/ethers-io/ethers.js/) or [web3.js](https://github.com/ethereum/web3.js) to connect your website to RSK. Users will need a web3-enabled browser. On desktop this means using the [MetaMask](https://metamask.io/) extension or something similar.
 
 ## Factory Contract
 
-The Uniswap [factory contract](https://github.com/Uniswap/contracts-vyper/blob/master/contracts/uniswap_factory.vy) can be used to create exchange contracts for any ERC20 token that does not already have one. It also functions as a registry of ERC20 tokens that have been added to the system, and the exchange with which they are associated.
+The RSKswap [factory contract](https://github.com/Uniswap/contracts-vyper/blob/master/contracts/uniswap_factory.vy) can be used to create exchange contracts for any ERC20 token that does not already have one. It also functions as a registry of ERC20 tokens that have been added to the system, and the exchange with which they are associated.
 
 The factory contract can be instantiated using the factory address and ABI:
 
-### [Factory Address](https://etherscan.io/address/0xc0a47dFe034B400B47bDaD5FecDa2621de6c4d95)
+### [Factory Address](https://explorer.rsk.co/address/0xDcC0B6783E1eB0013a5B919128058E9D24126db1)
 
 ```javascript
-// Ethereum Mainnet
-const factoryAddress = '0xc0a47dFe034B400B47bDaD5FecDa2621de6c4d95'
+// RSK Mainnet
+const factoryAddress = '0xDcC0B6783E1eB0013a5B919128058E9D24126db1'
 ```
 
 ```javascript
-// Rinkeby Testnet
-const factoryAddress = '0xf5D915570BC477f9B8D6C0E980aA81757A3AaC36'
+// RSK Testnet
+const factoryAddress = '0xDcC0B6783E1eB0013a5B919128058E9D24126db1'
 ```
 
 ### Factory Interface
@@ -38,7 +38,7 @@ const factoryContract = new web3.eth.Contract(factoryABI, factoryAddress)
 
 ### Get Exchange Address
 
-There is a separate exchange contract for every ERC20 token. The `getExchange` method in the factory contract can be used to find the Ethereum address associated with an ERC20 token address.
+There is a separate exchange contract for every ERC20 token. The `getExchange` method in the factory contract can be used to find the RSK address associated with an ERC20 token address.
 
 ```javascript
 const exchangeAddress = factoryContract.methods.getExchange(tokenAddress)
@@ -60,17 +60,17 @@ const exchangeContract = new web3.eth.Contract(exchangeABI, exchangeAddress)
 
 ## Token Contracts
 
-Some Uniswap interactions require making calls directly to ERC20 token contracts rather than the exchanges with which they are associated.
+Some RSKswap interactions require making calls directly to ERC20 token contracts rather than the exchanges with which they are associated.
 
 ### Get Token Address
 
-The `getToken` method in the factory contract can be used to find the ERC20 token address associated with an exchange contract. There is no barrier of entry for adding an ERC20 token to Uniswap or checks on the validity of the token contracts. Frontend interfaces should maintain a list of valid ERC20 tokens that users can safely trade or allow users to paste in arbitrary addresses.
+The `getToken` method in the factory contract can be used to find the ERC20 token address associated with an exchange contract. There is no barrier of entry for adding an ERC20 token to RSKswap or checks on the validity of the token contracts. Frontend interfaces should maintain a list of valid ERC20 tokens that users can safely trade or allow users to paste in arbitrary addresses.
 
 ```javascript
 const tokenAddress = factoryContract.methods.getToken(exchangeAddress)
 ```
 
-If the return value is `0x0000000000000000000000000000000000000000` the input address is not a Uniswap exchange.
+If the return value is `0x0000000000000000000000000000000000000000` the input address is not a RSKswap exchange.
 
 ### Token Interface
 

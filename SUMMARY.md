@@ -15,7 +15,7 @@
 
 ## Frontend Integration
 
-* [Connect to Uniswap](frontend-integration/connect-to-uniswap.md)
+* [Connect to RSKswap](frontend-integration/connect-to-uniswap.md)
 * [Pool Liquidity](frontend-integration/pool.md)
 * [Trade tokens](frontend-integration/swap.md)
 * [Custom Linking](frontend-integration/linking.md)
