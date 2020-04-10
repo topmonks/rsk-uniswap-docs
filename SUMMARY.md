@@ -2,17 +2,6 @@
 
 * [Getting Started](README.md)
 
-## SDK Documentation
-
-* [Get Started](sdk-documentation/get-started.md)
-* [Data](sdk-documentation/data.md)
-* [Computation](sdk-documentation/computation.md)
-* [Format](sdk-documentation/format.md)
-* [Orchestration](sdk-documentation/orchestration.md)
-* [Transact](sdk-documentation/transact.md)
-* [Constants](sdk-documentation/constants.md)
-* [Types](sdk-documentation/types.md)
-
 ## Frontend Integration
 
 * [Connect to RSKswap](frontend-integration/connect-to-uniswap.md)
